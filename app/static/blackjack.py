@@ -360,7 +360,7 @@ class Game:
 
 def get_db_connection():
     # print("Getting db connection...")
-    connection = sqlite3.connect('../blackjack.db')
+    connection = sqlite3.connect('blackjack.db')
     tableExists = connection.execute('SELECT * FROM sqlite_master WHERE type="table" AND name="gamestates"').fetchall() != []
     if not tableExists:
         # print("Creating gamestates table...")
