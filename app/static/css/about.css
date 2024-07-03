@@ -1,0 +1,10 @@
+.state-parent {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.state-child {
+    margin-right: 10px;
+}

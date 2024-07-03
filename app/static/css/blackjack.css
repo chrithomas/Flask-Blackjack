@@ -1,0 +1,46 @@
+.player-hand {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-top: 20px;
+}
+.dealer-hand {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-top: 20px;
+}
+
+.buttons-parent {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.buttons {
+    margin-right: 10px;
+}
+
+.flip-card-True {
+    background-color: transparent;
+    width: 125px;
+    height: 175px;
+    perspective: 1000px;
+    margin-right: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+.flip-card-False {
+    background-color: transparent;
+    width: 125px;
+    height: 175px;
+    perspective: 1000px;
+    margin-right: 10px;
+}
+
+.score {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}

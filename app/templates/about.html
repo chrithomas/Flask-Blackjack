@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <link rel="stylesheet" href="../static/css/about.css">  
+    {% for state in gamestates %}
+        <div class="state-parent">
+            <div class="state-child"><h6>State:</h6></div>
+            <div class="state-child"><p>{{ state['id'] }}</p></div>
+            <div class="state-child"><h6>Player:</h6></div>
+            <div class="state-child"><p>(${{ state['player'].split(',')[0] }}) {{ state['player'].split(',')[1:] }}</p></div>
+            <div class="state-child"><h6>Dealer:</h6></div>
+            <div class="state-child"><p>{{ state['dealer'].split(',')[1:] }}</p></div>
+        </div>
+    {% endfor %}
+{% endblock %}

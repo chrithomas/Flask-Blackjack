@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <link rel="stylesheet" href="../static/css/blackjack.css">
+    <body>
+        <div id="blackjack">
+            <div id="dealer">
+                <h3>Dealer</h3>
+                <div class="dealer-hand">
+                    {% for card in game.dealer.hands[0].cards %}
+                        <div class="flip-card-False">
+                            <img src="{{ game.resolveCardPath(card) }}" alt="Card Front" style="width:125px;height:175px;">     
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="score">
+                {% if game.disableBets == True %}
+                    <h6>Score: {{ game.dealer.hands[0].score }}<span id="dealer-score"></span></h6>
+                {% endif %}
+            </div>
+            
+            <div id="player">
+                <h3>Player (${{ game.player.money }})</h3>
+                {% for hand in game.player.hands %}
+                <div class="player-hand">
+                    {% for card in hand.cards %}
+                        <div class="flip-card-{{hand==game.player.hands[game.activeHandIndex]}}">
+                            <img src="{{ game.resolveCardPath(card) }}" alt="Card Front" style="width:125px;height:175px;">
+                        </div>
+                    {% endfor %}
+                </div>
+                    
+                    <div class="score">
+                        {% if game.disableBets == True %}
+                            <h6>Score: {{ hand.score }} <span id="player-score"></span></h6>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <form method="post">
+                <div class="buttons-parent">
+                    <div class = "buttons"><input type="submit" name="action" value="Play Again" {{ game.resolveDisabled(not game.validateAction('Play Again')) }}></input></div>
+                    <div class = "buttons"><input type="number" name="bet" value="{{ request.form['bet'] or game.player.hands[game.activeHandIndex].bet }}" min="0" max="{{ game.player.money }}" step="10" {{ game.resolveDisabled(not game.validateAction('Bet')) }}></input></div>
+                    <div class = "buttons"><input type="submit" name="action" value="Bet" {{ game.resolveDisabled(not game.validateAction('Bet')) }}></input></div>
+                    <div class = "buttons"><input type="submit" name="action" value="Stand" {{ game.resolveDisabled(not game.validateAction('Stand')) }}></input></div>
+                    <div class = "buttons"><input type="submit" name="action" value="Hit" {{ game.resolveDisabled(not game.validateAction('Hit')) }}></input></div>
+                    <div class = "buttons"><input type="submit" name="action" value="Split" {{ game.resolveDisabled(not game.validateAction('Split')) }}></input></div>
+                    <div class = "buttons"><input type="submit" name="action" value="Double" {{ game.resolveDisabled(not game.validateAction('Double')) }}></input></div>
+                </div>
+            </form>
+            <h2 id="message">{{ game.message }}</h2>
+        </div>
+    </body>
+{% endblock %}
